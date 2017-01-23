@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Question {
 
 	public static enum QuestionType {
-		SINGLE_CHOICE, MULTIPLE_CHOICE;
+		SINGLE_CHOICE, MULTIPLE_CHOICE, OPEN_TEXT;
 	}
 
 	public static enum QuestionLevel {
@@ -29,31 +29,6 @@ public class Question {
 			return text;
 		}
 
-	}
-
-	public static enum QuestionArea {
-		DESIGN_PATTERNS("Wzorce projektowe"), //
-		DELIVERY_PROCESS("Zarządzanie projektem"), //
-		ARCHITECTURE("Architektura systemów"), //
-		MULTITHREADING("Wielowątkowość"), //
-		MESSAGEING("Messaging"), //
-		DATABASE("Bazy danych i język SQL"), //
-		TESTING("Testowanie aplikacji"), //
-		CORE_JAVA("Core Java"), //
-		SPRING("Spring"), //
-		HIBERNATE("Hibernate"), //
-		WEB_DEVELOPMENT("Aplikacje Webowe"), //
-		OTHER("Inne");//
-
-		private final String text;
-
-		private QuestionArea(String text) {
-			this.text = text;
-		}
-
-		public String getText() {
-			return text;
-		}
 	}
 
 	private Long id;

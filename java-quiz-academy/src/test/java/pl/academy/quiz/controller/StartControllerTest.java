@@ -2,17 +2,17 @@ package pl.academy.quiz.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +29,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import pl.academy.quiz.model.Question;
+import pl.academy.quiz.model.QuestionArea;
+import pl.academy.quiz.service.QuestionAreaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = StartControllerTest.StartControllerTestConfiguration.class)
@@ -36,13 +38,25 @@ import pl.academy.quiz.model.Question;
 public class StartControllerTest {
 
 	private MockMvc mockMvc;
+	
+	private List<QuestionArea> areas;
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;
 
+	@Autowired
+	private QuestionAreaService mockQuestionAreaService;
+
+
 	@Before
 	public void setUp() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+		areas = Arrays.asList(//
+				QuestionArea.builder().id(10L).name("Area1").build(), //
+				QuestionArea.builder().id(11L).name("Area2").build(), //
+				QuestionArea.builder().id(12L).name("Area3").build()//
+		);
+		Mockito.when(mockQuestionAreaService.getAllAreas()).thenReturn(areas);
 	}
 
 	@Test
@@ -51,7 +65,7 @@ public class StartControllerTest {
 				.andExpect(status().isOk())//
 				.andExpect(view().name("index"))//
 				.andExpect(forwardedUrl("/WEB-INF/views/index.jsp"))//
-				.andExpect(model().attribute("areas", Question.QuestionArea.values()))//
+				.andExpect(model().attribute("areas", areas))//
 				.andExpect(model().attribute("levels", Question.QuestionLevel.values()));//
 
 	}
@@ -62,6 +76,11 @@ public class StartControllerTest {
 		@Bean
 		public StartController startController() {
 			return new StartController();
+		}
+
+		@Bean
+		public QuestionAreaService mockQuestionAreaService() {
+			return Mockito.mock(QuestionAreaService.class);
 		}
 
 		@Override

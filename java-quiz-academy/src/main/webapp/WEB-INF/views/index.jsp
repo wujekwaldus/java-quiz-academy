@@ -36,7 +36,7 @@
 							Wybierz interesujące Cię obszary:
 							<c:forEach items="${areas}" var="area">
 								<div class="checkbox">
-									<label><input type="checkbox" value="${area}" name="area">${area.text}</label>
+									<label><input type="checkbox" value="${area.id}" name="area">${area.name}</label>
 								</div>
 							</c:forEach>
 						</div>
