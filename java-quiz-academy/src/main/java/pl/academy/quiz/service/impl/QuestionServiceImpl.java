@@ -1,30 +1,30 @@
 package pl.academy.quiz.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.academy.quiz.model.Question;
+import pl.academy.quiz.repository.QuestionRepository;
+import pl.academy.quiz.search.criteria.RandomQuizSearchCriteria;
 import pl.academy.quiz.service.QuestionService;
 
 @Service
+@Transactional
 public class QuestionServiceImpl implements QuestionService {
+	private static final Logger LOG = LoggerFactory.getLogger(QuestionServiceImpl.class);
 
-	// TODO: replace with database - test case only
-	private List<Question> mockedQuestions;
-
-	@PostConstruct
-	public void init() {
-		mockedQuestions = new ArrayList<>();
-	}
-
+	@Autowired
+	private QuestionRepository questionRepository;
 
 	@Override
-	public List<Question> getRandomQuestions() {
-		return mockedQuestions;
+	public List<Question> getRandomQuestions(RandomQuizSearchCriteria quizSearchCriteria) {
+		LOG.info("quizSearchCriteria: {}", quizSearchCriteria);
+		return questionRepository.findAllWithOptionsAndArea();
 	}
 
 }

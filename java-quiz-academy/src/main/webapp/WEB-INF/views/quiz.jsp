@@ -30,7 +30,7 @@
 						</div>
 					</c:forEach>
 				</div>
-				<div class="panel-footer" style="font-weight: bold; font-size: 10px;">${q.area.text}</div>
+				<div class="panel-footer" style="font-weight: bold; font-size: 10px;">${q.area.name}</div>
 			</div>
 		</c:forEach>
 	</div>
