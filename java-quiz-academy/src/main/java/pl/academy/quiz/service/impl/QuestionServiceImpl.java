@@ -1,10 +1,14 @@
 package pl.academy.quiz.service.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,9 +26,15 @@ public class QuestionServiceImpl implements QuestionService {
 	private QuestionRepository questionRepository;
 
 	@Override
-	public List<Question> getRandomQuestions(RandomQuizSearchCriteria quizSearchCriteria) {
-		LOG.info("quizSearchCriteria: {}", quizSearchCriteria);
-		return questionRepository.findAllWithOptionsAndArea();
+	public List<Question> getRandomQuestions(RandomQuizSearchCriteria searchCriteria) {
+		LOG.info("quizSearchCriteria: {}", searchCriteria);
+		Pageable topThree = new PageRequest(0, 3);
+
+		List<Question> result = new ArrayList<>();
+		Arrays.stream(searchCriteria.getArea())//
+				.forEach(id -> result.addAll(questionRepository.findByCriteria(id, searchCriteria.getLevelAsEnum(), topThree)));
+
+		return result;
 	}
 
 }

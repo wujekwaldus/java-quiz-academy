@@ -23,4 +23,9 @@ public class QuestionAreaServiceImpl implements QuestionAreaService {
 		return areaRepository.findAll(new Sort(Sort.Direction.ASC, "name"));
 	}
 
+	@Override
+	public boolean hasAreaWithId(long areaId) {
+		return areaRepository.findOne(areaId) != null;
+	}
+
 }
