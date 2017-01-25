@@ -14,25 +14,29 @@
 		<p>Sprawdź na jakim poziomie jest Twoja wiedza z programowania!</p>
 	</div>
 	<div class="container">
-		<c:forEach items="${questions}" var="q">
-			<div class="panel panel-default">
-				<div class="panel-heading" style="font-weight: bold;">${q.text}</div>
-				<div class="panel-body">
+		<form action="/java-quiz-academy/quiz/finish" method="post">
+			<c:forEach items="${questions}" var="q">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="font-weight: bold;">${q.text}</div>
+					<div class="panel-body">
 
-					<c:forEach var="o" items="${q.options}">
-						<div class="row" style="margin-left: 20px;">
-							<c:if test="${q.type=='SINGLE_CHOICE'}">
-								<input type="radio" name="answer_${q.id }" value="${o.id}" />${o.text}
+						<c:forEach var="o" items="${q.options}">
+							<div class="row" style="margin-left: 20px;">
+								<c:if test="${q.type=='SINGLE_CHOICE'}">
+									<input type="radio" name="answer_${q.id}" value="${o.id}" />${o.text}
 						</c:if>
-							<c:if test="${q.type=='MULTIPLE_CHOICE'}">
-								<input type="checkbox" name="answer_${q.id }" value="${o.id}" />${o.text}
+								<c:if test="${q.type=='MULTIPLE_CHOICE'}">
+									<input type="checkbox" name="answer_${q.id}" value="${o.id}" />${o.text}
 						</c:if>
-						</div>
-					</c:forEach>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="panel-footer" style="font-weight: bold; font-size: 10px;">${q.area.name}</div>
 				</div>
-				<div class="panel-footer" style="font-weight: bold; font-size: 10px;">${q.area.name}</div>
-			</div>
-		</c:forEach>
+			</c:forEach>
+			<button type="submit" class="btn btn-default">Zakończ test</button>
+		</form>
+
 	</div>
 
 

@@ -16,4 +16,7 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 			+ "ar.id = :areaId AND q.level = :level ORDER BY RAND()")
 	List<Question> findByCriteria(@Param("areaId") long areaId, @Param("level") QuestionLevel level, Pageable pageable);
 
+	@Query("SELECT q FROM Question q LEFT JOIN FETCH q.options opt LEFT JOIN FETCH q.area ar WHERE q.id = :id")
+	Question findOneFetchOptions(@Param("id") Long questionId);
+
 }
