@@ -28,7 +28,7 @@ insert into questionOption (id, text, points, question_id) values(8,'singleton',
 insert into questionOption (id, text, points, question_id) values(9,'prototype',0,3);
 
 insert into question (id, text, type, level, area_id, availablePoints) values (4,'Aby zintegrowac testy jednostkowe JUnit z kontenerem springowym nalezy:', 'MULTIPLE_CHOICE', 'ADVANCED', 9, 2);
-insert into questionOption (id, text, points, question_id) values(10,'Skorzystac z adnotacji @RunWith oraz jako argument podając runner springowy dla Junita.',1,4);
+insert into questionOption (id, text, points, question_id) values(10,'Skorzystac z adnotacji @RunWith oraz jako argument podajac runner springowy dla Junita.',1,4);
 insert into questionOption (id, text, points, question_id) values(11,'Za pomoca adnotacji @ContextConfiguration wskazac konfiguracje kontekstu springowego',1,4);
 insert into questionOption (id, text, points, question_id) values(12,'Za pomoca adnotacji @ContextLocation wskazac konfiguracje kontekstu springowego',0,4);
 insert into questionOption (id, text, points, question_id) values(13,'Skorzystac z adnotacji @BeforeClass ktora zainicjalizuje nam kontekst aplikacji',0,4);
