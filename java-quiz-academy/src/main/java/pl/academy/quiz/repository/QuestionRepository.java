@@ -2,6 +2,7 @@ package pl.academy.quiz.repository;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,7 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 	List<Question> findByCriteria(@Param("areaId") long areaId, @Param("level") QuestionLevel level, Pageable pageable);
 
 	@Query("SELECT q FROM Question q LEFT JOIN FETCH q.options opt LEFT JOIN FETCH q.area ar WHERE q.id = :id")
+	@Cacheable(value="questionWithOptions")
 	Question findOneFetchOptions(@Param("id") Long questionId);
 
 }

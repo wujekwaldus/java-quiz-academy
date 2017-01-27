@@ -1,5 +1,6 @@
 package pl.academy.quiz.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -27,8 +28,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Question {
-
+public class Question implements Serializable {
+	private static final long serialVersionUID = 1273901372239445061L;
+	
 	public static enum QuestionType {
 		SINGLE_CHOICE, MULTIPLE_CHOICE, OPEN_TEXT;
 	}

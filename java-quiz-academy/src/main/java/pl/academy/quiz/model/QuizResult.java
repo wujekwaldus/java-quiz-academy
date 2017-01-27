@@ -1,5 +1,6 @@
 package pl.academy.quiz.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +29,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @Entity
-public class QuizResult {
+public class QuizResult implements Serializable {
+	private static final long serialVersionUID = 2875832096457319979L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;

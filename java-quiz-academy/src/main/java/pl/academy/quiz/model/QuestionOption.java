@@ -1,5 +1,7 @@
 package pl.academy.quiz.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,8 +24,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @Entity
-public class QuestionOption {
-
+public class QuestionOption implements Serializable {
+	private static final long serialVersionUID = -2365654215511172562L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
