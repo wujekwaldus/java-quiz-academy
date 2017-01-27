@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.academy.quiz.dto.QuestionDTO;
+import pl.academy.quiz.dto.QuizResultDTO;
 import pl.academy.quiz.model.Question;
 import pl.academy.quiz.model.QuizResult;
 import pl.academy.quiz.search.criteria.RandomQuizSearchCriteria;
@@ -26,12 +27,15 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionService questionService;
-	
+
 	@Autowired
 	private QuizService quizService;
 
 	@Autowired
 	private ModelToDtoConverter<Question, QuestionDTO> questionConverter;
+
+	@Autowired
+	private ModelToDtoConverter<QuizResult, QuizResultDTO> quizConverter;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getRandomQuiz(@ModelAttribute @Valid RandomQuizSearchCriteria quizSearchCriteria, BindingResult result, ModelMap model) {
@@ -41,11 +45,12 @@ public class QuestionController {
 		model.addAttribute("questions", questionConverter.convert(questionService.getRandomQuestions(quizSearchCriteria)));
 		return QUIZ_VIEW;
 	}
-	
+
 	@RequestMapping(value = "/finish", method = RequestMethod.POST)
-	public String showResults(HttpServletRequest request, ModelMap model){
-		//TODO: validate if user answers are for given questions.
+	public String showResults(HttpServletRequest request, ModelMap model) {
+		// TODO: validate if user answers are for given questions.
 		QuizResult result = quizService.resolveFromParametersMap(request.getParameterMap());
+		model.addAttribute("result", quizConverter.convert(result));
 		return "results";
 	}
 }

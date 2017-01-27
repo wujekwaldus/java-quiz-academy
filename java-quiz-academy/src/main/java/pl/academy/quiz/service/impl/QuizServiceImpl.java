@@ -37,6 +37,8 @@ public class QuizServiceImpl implements QuizService {
 	public QuizResult resolveFromParametersMap(Map<String, String[]> parameters) {
 		QuizResult result = new QuizResult();
 		//TODO: spring data-audit
+		//TODO: spring-cache
+		//TODO: unit tests
 		result.setResolveDate(new Date());
 		
 		parameters.keySet().stream().filter(this::isAnswer)

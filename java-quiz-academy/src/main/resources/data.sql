@@ -12,82 +12,80 @@ insert into questionArea (id, name) values (11, 'Aplikacje Webowe');
 insert into questionArea (id, name) values (12, 'Algorytmy');
 
 
-insert into question (id, text, type, level, area_id, availablePoints) values (1,'Spring question 1', 'SINGLE_CHOICE', 'ADVANCED', 9, 1);
-insert into questionOption (id, text, points, question_id) values(1,'Option 1',1,1);
-insert into questionOption (id, text, points, question_id) values(2,'Option 2',0,1);
-insert into questionOption (id, text, points, question_id) values(3,'Option 3',0,1);
+insert into question (id, text, type, level, area_id, availablePoints) values (1,'Skrot DI oznacza:', 'SINGLE_CHOICE', 'ADVANCED', 9, 1);
+insert into questionOption (id, text, points, question_id) values(1,'Dependency Inversion',0,1);
+insert into questionOption (id, text, points, question_id) values(2,'Dependency Injection',1,1);
+insert into questionOption (id, text, points, question_id) values(3,'Dependency Intelligent',0,1);
 
+insert into question (id, text, type, level, area_id, availablePoints) values (2,'Jakie sa bean scope w Springu?', 'MULTIPLE_CHOICE', 'ADVANCED', 9, 2);
+insert into questionOption (id, text, points, question_id) values(4,'singleton',1,2);
+insert into questionOption (id, text, points, question_id) values(5,'global-singleton',0,2);
+insert into questionOption (id, text, points, question_id) values(6,'prototype',1,2);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (2,'Spring question 2', 'MULTIPLE_CHOICE', 'ADVANCED', 9, 2);
-insert into questionOption (id, text, points, question_id) values(4,'Option 1',1,2);
-insert into questionOption (id, text, points, question_id) values(5,'Option 2',0,2);
-insert into questionOption (id, text, points, question_id) values(6,'Option 3',1,2);
+insert into question (id, text, type, level, area_id, availablePoints) values (3,'Jaki jest domyslny bean scope w Springu?', 'SINGLE_CHOICE', 'ADVANCED', 9, 1);
+insert into questionOption (id, text, points, question_id) values(7,'request',0,3);
+insert into questionOption (id, text, points, question_id) values(8,'singleton',1,3);
+insert into questionOption (id, text, points, question_id) values(9,'prototype',0,3);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (3,'Spring question 3', 'SINGLE_CHOICE', 'ADVANCED', 9, 1);
-insert into questionOption (id, text, points, question_id) values(7,'Option 1',1,3);
-insert into questionOption (id, text, points, question_id) values(8,'Option 2',0,3);
-insert into questionOption (id, text, points, question_id) values(9,'Option 3',0,3);
+insert into question (id, text, type, level, area_id, availablePoints) values (4,'Aby zintegrowac testy jednostkowe JUnit z kontenerem springowym nalezy:', 'MULTIPLE_CHOICE', 'ADVANCED', 9, 2);
+insert into questionOption (id, text, points, question_id) values(10,'Skorzystac z adnotacji @RunWith oraz jako argument podając runner springowy dla Junita.',1,4);
+insert into questionOption (id, text, points, question_id) values(11,'Za pomoca adnotacji @ContextConfiguration wskazac konfiguracje kontekstu springowego',1,4);
+insert into questionOption (id, text, points, question_id) values(12,'Za pomoca adnotacji @ContextLocation wskazac konfiguracje kontekstu springowego',0,4);
+insert into questionOption (id, text, points, question_id) values(13,'Skorzystac z adnotacji @BeforeClass ktora zainicjalizuje nam kontekst aplikacji',0,4);
+insert into questionOption (id, text, points, question_id) values(14,'Nic nie trzeba robic, Junit automatycznie integruje sie ze springiem.',0,4);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (4,'Spring question 4', 'MULTIPLE_CHOICE', 'ADVANCED', 9, 2);
-insert into questionOption (id, text, points, question_id) values(10,'Option 1',1,4);
-insert into questionOption (id, text, points, question_id) values(11,'Option 2',0,4);
-insert into questionOption (id, text, points, question_id) values(12,'Option 3',0,4);
-insert into questionOption (id, text, points, question_id) values(13,'Option 4',1,4);
-insert into questionOption (id, text, points, question_id) values(14,'Option 5',0,4);
-insert into questionOption (id, text, points, question_id) values(15,'Option 6',0,4);
+insert into question (id, text, type, level, area_id, availablePoints) values (5,'W Springu MVC role Front-Controllera pelni:', 'SINGLE_CHOICE', 'MID', 9, 1);
+insert into questionOption (id, text, points, question_id) values(16,'ProxyServlet',0,5);
+insert into questionOption (id, text, points, question_id) values(17,'DispatcherFilter',0,5);
+insert into questionOption (id, text, points, question_id) values(18,'DispatcherServlet',1,5);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (5,'Spring question 5', 'SINGLE_CHOICE', 'MID', 9, 1);
-insert into questionOption (id, text, points, question_id) values(16,'Option 1',1,5);
-insert into questionOption (id, text, points, question_id) values(17,'Option 2',0,5);
-insert into questionOption (id, text, points, question_id) values(18,'Option 3',0,5);
+insert into question (id, text, type, level, area_id, availablePoints) values (6,'Heap to miejsce pamieci w ktorym:', 'SINGLE_CHOICE', 'ADVANCED', 8, 1);
+insert into questionOption (id, text, points, question_id) values(19,'Przechowujemy wszystkie obiekty',1,6);
+insert into questionOption (id, text, points, question_id) values(20,'Przechowujemy wszystkie wywolania metod',0,6);
+insert into questionOption (id, text, points, question_id) values(21,'Przechowujemy wszystkie instrukcje warunkowe',0,6);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (6,'Java Question 1', 'SINGLE_CHOICE', 'ADVANCED', 8, 1);
-insert into questionOption (id, text, points, question_id) values(19,'Option 1',1,6);
-insert into questionOption (id, text, points, question_id) values(20,'Option 2',0,6);
-insert into questionOption (id, text, points, question_id) values(21,'Option 3',0,6);
+insert into question (id, text, type, level, area_id, availablePoints) values (7,'Ktore z ponizszych to implementacje java.util.List?', 'MULTIPLE_CHOICE', 'ADVANCED', 8, 2);
+insert into questionOption (id, text, points, question_id) values(22,'ArrayList',1,7);
+insert into questionOption (id, text, points, question_id) values(23,'LinkedList',1,7);
+insert into questionOption (id, text, points, question_id) values(24,'SortedList',0,7);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (7,'Java Question 2', 'MULTIPLE_CHOICE', 'ADVANCED', 8, 2);
-insert into questionOption (id, text, points, question_id) values(22,'Option 1',1,7);
-insert into questionOption (id, text, points, question_id) values(23,'Option 2',0,7);
-insert into questionOption (id, text, points, question_id) values(24,'Option 3',1,7);
+insert into question (id, text, type, level, area_id, availablePoints) values (8,'Ktore z ponizszych to implementacje java.util.Set?', 'MULTIPLE_CHOICE', 'ADVANCED', 8, 3);
+insert into questionOption (id, text, points, question_id) values(25,'Hashset',1,8);
+insert into questionOption (id, text, points, question_id) values(26,'LinkedHashSet',1,8);
+insert into questionOption (id, text, points, question_id) values(27,'TreeSet',1,8);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (8,'Java Question 3', 'SINGLE_CHOICE', 'ADVANCED', 8, 1);
-insert into questionOption (id, text, points, question_id) values(25,'Option 1',1,8);
-insert into questionOption (id, text, points, question_id) values(26,'Option 2',0,8);
-insert into questionOption (id, text, points, question_id) values(27,'Option 3',0,8);
+insert into question (id, text, type, level, area_id, availablePoints) values (9,'Co domyslnie robi metoda equals w klasie Object?', 'SINGLE_CHOICE', 'MID', 8, 1);
+insert into questionOption (id, text, points, question_id) values(28,'Porownuje wartosci wszystkich pol klasy',0,9);
+insert into questionOption (id, text, points, question_id) values(29,'Zwraca zawsze false',0,9);
+insert into questionOption (id, text, points, question_id) values(30,'Porownuje referencje dwoch obiektow',1,9);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (9,'Java Question 4', 'MULTIPLE_CHOICE', 'MID', 8, 3);
-insert into questionOption (id, text, points, question_id) values(28,'Option 1',1,9);
-insert into questionOption (id, text, points, question_id) values(29,'Option 2',1,9);
-insert into questionOption (id, text, points, question_id) values(30,'Option 3',1,9);
+insert into question (id, text, type, level, area_id, availablePoints) values (10,'Co domyslnie zwraca metoda hashCode z klasy Object?', 'SINGLE_CHOICE', 'ADVANCED', 8, 1);
+insert into questionOption (id, text, points, question_id) values(31,'Zwraca numer komorki pamieci w ktorej znajduje sie obiekt',1,10);
+insert into questionOption (id, text, points, question_id) values(32,'Zwraca numer instancji obiektu',0,10);
+insert into questionOption (id, text, points, question_id) values(33,'Zwraca date stworzenia obiektu w postaci milisekund',0,10);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (10,'Java Question 5', 'SINGLE_CHOICE', 'ADVANCED', 8, 1);
-insert into questionOption (id, text, points, question_id) values(31,'Option 1',1,10);
-insert into questionOption (id, text, points, question_id) values(32,'Option 2',0,10);
-insert into questionOption (id, text, points, question_id) values(33,'Option 3',0,10);
+insert into question (id, text, type, level, area_id, availablePoints) values (11,'Jakiego interfejsu J2EE Hibernate jest implementacja?', 'SINGLE_CHOICE', 'ADVANCED', 10, 1);
+insert into questionOption (id, text, points, question_id) values(34,'JPA',1,11);
+insert into questionOption (id, text, points, question_id) values(35,'JAAS',0,11);
+insert into questionOption (id, text, points, question_id) values(36,'JTA',0,11);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (11,'Hibernate Question 1', 'SINGLE_CHOICE', 'ADVANCED', 10, 1);
-insert into questionOption (id, text, points, question_id) values(34,'Option 1',1,11);
-insert into questionOption (id, text, points, question_id) values(35,'Option 2',0,11);
-insert into questionOption (id, text, points, question_id) values(36,'Option 3',0,11);
+insert into question (id, text, type, level, area_id, availablePoints) values (12,'Minimalny zbior adnotacji ktory jest potrzeby aby stworzyc encje w Hibernate to:', 'SINGLE_CHOICE', 'MID', 10, 1);
+insert into questionOption (id, text, points, question_id) values(37,'@Entity, @Id',1,12);
+insert into questionOption (id, text, points, question_id) values(38,'@Entity, @Table, @Id',0,12);
+insert into questionOption (id, text, points, question_id) values(39,'@Entity, @Id, @GeneratedValue',0,12);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (12,'Hibernate Question 2', 'MULTIPLE_CHOICE', 'MID', 10, 2);
-insert into questionOption (id, text, points, question_id) values(37,'Option 1',1,12);
-insert into questionOption (id, text, points, question_id) values(38,'Option 2',1,12);
-insert into questionOption (id, text, points, question_id) values(39,'Option 3',0,12);
+insert into question (id, text, type, level, area_id, availablePoints) values (13,'N+1 Problem dotoczy:', 'SINGLE_CHOICE', 'ADVANCED', 10, 1);
+insert into questionOption (id, text, points, question_id) values(40,'Generowania zbyt duzej ilosci zapytan do bazy danych',1,13);
+insert into questionOption (id, text, points, question_id) values(41,'Zwracaniem zbyt duzej ilosci obiektow w wyniku',0,13);
+insert into questionOption (id, text, points, question_id) values(42,'Nadmiarem kolumn w bazie danych',0,13);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (13,'Hibernate Question 3', 'SINGLE_CHOICE', 'ADVANCED', 10, 1);
-insert into questionOption (id, text, points, question_id) values(40,'Option 1',1,13);
-insert into questionOption (id, text, points, question_id) values(41,'Option 2',0,13);
-insert into questionOption (id, text, points, question_id) values(42,'Option 3',0,13);
+insert into question (id, text, type, level, area_id, availablePoints) values (14,'Jakie sa strategie dziedziczenia obiektow w Hibernate?', 'MULTIPLE_CHOICE', 'ADVANCED', 10, 2);
+insert into questionOption (id, text, points, question_id) values(43,'Pojedyncza tabela dla calej hierarchii obiektu: Single table',1,14);
+insert into questionOption (id, text, points, question_id) values(44,'Kazdy obiekt z hierarchii posiada swoja tabele w bazie: Table per class',1,14);
+insert into questionOption (id, text, points, question_id) values(45,'W hibernate nie da sie mapowac dziedziczenia',0,14);
 
-insert into question (id, text, type, level, area_id, availablePoints) values (14,'Hibernate question 4', 'MULTIPLE_CHOICE', 'ADVANCED', 10, 2);
-insert into questionOption (id, text, points, question_id) values(43,'Option 1',1,14);
-insert into questionOption (id, text, points, question_id) values(44,'Option 2',1,14);
-insert into questionOption (id, text, points, question_id) values(45,'Option 3',0,14);
-
-insert into question (id, text, type, level, area_id, availablePoints) values (15,'Hibernate question 5', 'SINGLE_CHOICE', 'ADVANCED', 10, 1);
-insert into questionOption (id, text, points, question_id) values(46,'Option 1',1,15);
-insert into questionOption (id, text, points, question_id) values(47,'Option 2',0,15);
-insert into questionOption (id, text, points, question_id) values(48,'Option 3',0,15);
+insert into question (id, text, type, level, area_id, availablePoints) values (15,'First Level Cache w hibernate:', 'SINGLE_CHOICE', 'ADVANCED', 10, 1);
+insert into questionOption (id, text, points, question_id) values(46,'nie mozna go wylaczyc',1,15);
+insert into questionOption (id, text, points, question_id) values(47,'jest miedzysesyjny',0,15);
+insert into questionOption (id, text, points, question_id) values(48,'implementuje go hazelcast',0,15);
 
