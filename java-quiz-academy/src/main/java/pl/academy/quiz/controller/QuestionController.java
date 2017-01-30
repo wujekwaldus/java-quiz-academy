@@ -47,9 +47,8 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "/finish", method = RequestMethod.POST)
-	public String showResults(HttpServletRequest request, ModelMap model) {
-		// TODO: validate if user answers are for given questions.
-		QuizResult result = quizService.resolveFromParametersMap(request.getParameterMap());
+	public String showResults(QuizResult quizResult, ModelMap model) {
+		QuizResult result = quizService.saveQuizeResult(quizResult);
 		model.addAttribute("result", quizConverter.convert(result));
 		return "results";
 	}
