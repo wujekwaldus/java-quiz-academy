@@ -50,7 +50,7 @@ insert into questionOption (id, text, points, question_id) values(23,'LinkedList
 insert into questionOption (id, text, points, question_id) values(24,'SortedList',0,7);
 
 insert into question (id, text, type, level, area_id, availablePoints) values (8,'Ktore z ponizszych to implementacje java.util.Set?', 'MULTIPLE_CHOICE', 'ADVANCED', 8, 3);
-insert into questionOption (id, text, points, question_id) values(25,'Hashset',1,8);
+insert into questionOption (id, text, points, question_id) values(25,'HashSet',1,8);
 insert into questionOption (id, text, points, question_id) values(26,'LinkedHashSet',1,8);
 insert into questionOption (id, text, points, question_id) values(27,'TreeSet',1,8);
 
@@ -88,4 +88,18 @@ insert into question (id, text, type, level, area_id, availablePoints) values (1
 insert into questionOption (id, text, points, question_id) values(46,'nie mozna go wylaczyc',1,15);
 insert into questionOption (id, text, points, question_id) values(47,'jest miedzysesyjny',0,15);
 insert into questionOption (id, text, points, question_id) values(48,'implementuje go hazelcast',0,15);
+
+insert into question (id, text, type, level, area_id, availablePoints) values (16,'Aby stworzyc relacje many-to-many w hibernate nalezy:', 'MULTIPLE_CHOICE', 'ADVANCED', 10, 3);
+insert into questionOption (id, text, points, question_id) values(49,'Oznaczyc kolekcje adnotacja @ManyToMany',1,16);
+insert into questionOption (id, text, points, question_id) values(50,'Stworzyc mapowanie tabeli asocjacyjnej za pomoca adnotacji @JoinTable',1,16);
+insert into questionOption (id, text, points, question_id) values(51,'W Adnotacji @JoinTable nalezy podac klucze glowne z obu stron asocjacji',1,16);
+
+insert into question (id, text, type, level, area_id, availablePoints) values (17,'Eden to obszar pamieci:', 'MULTIPLE_CHOICE', 'ADVANCED', 8, 2);
+insert into questionOption (id, text, points, question_id) values(52,'Nalezacy do sterty',1,17);
+insert into questionOption (id, text, points, question_id) values(53,'Nalezacy do stosu',0,17);
+insert into questionOption (id, text, points, question_id) values(54,'Przestrzen do ktorej trafiaja wszystkie nowo stworzone obiekty',1,17);
+
+insert into question (id, text, type, level, area_id, availablePoints) values (18,'Czy final zapobiega dodawaniu lub usuwaniu elementow na ArrayList?', 'SINGLE_CHOICE', 'ADVANCED', 8, 1);
+insert into questionOption (id, text, points, question_id) values(55,'Tak',0,18);
+insert into questionOption (id, text, points, question_id) values(56,'Nie',1,18);
 
