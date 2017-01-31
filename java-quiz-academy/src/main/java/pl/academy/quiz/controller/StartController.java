@@ -29,9 +29,14 @@ public class StartController {
 		model.addAttribute("levels", Question.QuestionLevel.values());
 		return DEFAULT_VIEW;
 	}
+	
+	@RequestMapping(value = "/registration", method = RequestMethod.GET)
+	public String registration() {
+		return "registration";
+	}
 
 	@RequestMapping(value = "/denide", method = RequestMethod.GET)
-	public String accessDenide(ModelMap model) {
+	public String accessDenide() {
 		return "denide";
 	}
 

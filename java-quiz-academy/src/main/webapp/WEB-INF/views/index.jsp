@@ -17,16 +17,16 @@
 	<div class="jumbotron text-center">
 		<h1>Java Academy</h1>
 		<p>Sprawdź na jakim poziomie jest Twoja wiedza z programowania!</p>
-		<button type="button" class="btn btn-default">Quiz</button>
-		<button type="button" class="btn btn-default">O mnie</button>
-		<button type="button" class="btn btn-default">Praca w IT - FAQ</button>
-		<button type="button" class="btn btn-default">Szkolenia JAVA</button>
-		<button type="button" class="btn btn-default">Rejestracja</button>
+		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/'">Quiz</button>
+		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/about'">O mnie</button>
+		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/workFAQ'">Praca w IT - FAQ</button>
+		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/trening'">Szkolenia JAVA</button>
+		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/registration'">Rejestracja</button>
 		<sec:authorize var="loggedIn" access="isAuthenticated()" />
+		<sec:authentication var="user" property="principal" />
 		<c:choose>
 			<c:when test="${loggedIn}">
-				<button type="button" class="btn btn-success" onclick="$('#logoutForm').submit();">Wyloguj:
-					${pageContext.request.userPrincipal.name}</button>
+				<button type="button" class="btn btn-success" onclick="$('#logoutForm').submit();">Wyloguj: ${user.username}</button>
 			</c:when>
 			<c:otherwise>
 				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginModalDiv">Logowanie</button>
@@ -117,9 +117,11 @@
 		</div>
 
 	</div>
-	<c:url value="/logout" var="logoutUrl" />
-	<form action="${logoutUrl}" method="post" id="logoutForm">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	</form>
+	<c:if test="${loggedIn}">
+		<c:url value="/logout" var="logoutUrl" />
+		<form action="${logoutUrl}" method="post" id="logoutForm">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		</form>
+	</c:if>
 </body>
 </html>
