@@ -34,6 +34,7 @@
 					<div class="panel-footer" style="font-weight: bold; font-size: 10px;">${q.area.name}</div>
 				</div>
 			</c:forEach>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<button type="submit" class="btn btn-default">Zakończ test</button>
 		</form>
 

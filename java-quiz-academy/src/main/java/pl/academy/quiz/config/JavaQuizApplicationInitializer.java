@@ -16,4 +16,5 @@ public class JavaQuizApplicationInitializer extends AbstractAnnotationConfigDisp
 	protected java.lang.Class<?>[] getRootConfigClasses() {
 		return new Class[] { JavaQuizApplicationConfiguration.class };
 	}
+	
 }

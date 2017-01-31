@@ -46,4 +46,5 @@ public class JavaQuizApplicationConfiguration extends WebMvcConfigurerAdapter {
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
 		argumentResolvers.add(quizResultResolver());
 	}
+	
 }

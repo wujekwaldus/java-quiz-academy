@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,7 +22,16 @@
 		<button type="button" class="btn btn-default">Praca w IT - FAQ</button>
 		<button type="button" class="btn btn-default">Szkolenia JAVA</button>
 		<button type="button" class="btn btn-default">Rejestracja</button>
-		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginModalDiv">Logowanie</button>
+		<sec:authorize var="loggedIn" access="isAuthenticated()" />
+		<c:choose>
+			<c:when test="${loggedIn}">
+				<button type="button" class="btn btn-success" onclick="$('#logoutForm').submit();">Wyloguj:
+					${pageContext.request.userPrincipal.name}</button>
+			</c:when>
+			<c:otherwise>
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginModalDiv">Logowanie</button>
+			</c:otherwise>
+		</c:choose>
 
 	</div>
 	<div class="container">
@@ -33,6 +43,16 @@
 				</div>
 			</div>
 		</spring:hasBindErrors>
+		<c:if test="${param.errorLogin != null}">
+			<div class="alert alert-danger">
+				<p>Niepoprawne dane do logowania.</p>
+			</div>
+		</c:if>
+		<c:if test="${param.logout != null}">
+			<div class="alert alert-success">
+				<p>Zostałeś wylogowany.</p>
+			</div>
+		</c:if>
 
 
 		<div class="panel panel-default">
@@ -80,14 +100,16 @@
 						<h4 class="modal-title">Panel logowania użytkownika</h4>
 					</div>
 					<div class="modal-body">
-						<form>
+						<c:url var="loginUrl" value="/" />
+						<form action="${loginUrl}" method="POST">
 							<div class="form-group">
-								<label for="email">Nazwa użytkownika</label> <input type="email" class="form-control" id="login" name="login">
+								<label for="email">Nazwa użytkownika</label> <input type="text" class="form-control" id="email" name="email">
 							</div>
 							<div class="form-group">
-								<label for="pwd">Hasło:</label> <input type="password" class="form-control" id="password" name="password">
+								<label for="password">Hasło:</label> <input type="password" class="form-control" id="password" name="password">
 							</div>
 							<button type="submit" class="btn btn-default">Zaloguj</button>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</form>
 					</div>
 				</div>
@@ -95,5 +117,9 @@
 		</div>
 
 	</div>
+	<c:url value="/logout" var="logoutUrl" />
+	<form action="${logoutUrl}" method="post" id="logoutForm">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</form>
 </body>
 </html>
