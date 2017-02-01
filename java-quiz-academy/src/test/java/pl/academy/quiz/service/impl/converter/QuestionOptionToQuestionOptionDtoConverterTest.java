@@ -15,14 +15,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.academy.quiz.dto.QuestionOptionDTO;
 import pl.academy.quiz.model.QuestionOption;
-import pl.academy.quiz.service.ModelToDtoConverter;
+import pl.academy.quiz.service.ObjectConverter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = QuestionOptionToQuestionOptionDtoConverterTest.QuestionOptionToQuestionOptionDtoConverterTestConfiguration.class)
 public class QuestionOptionToQuestionOptionDtoConverterTest {
 
 	@Autowired
-	private ModelToDtoConverter<QuestionOption, QuestionOptionDTO> optionToOptionDtoConverter;
+	private ObjectConverter<QuestionOption, QuestionOptionDTO> optionToOptionDtoConverter;
 
 	@Test
 	public void shouldConvertOptionToOptionDto() {
@@ -49,7 +49,7 @@ public class QuestionOptionToQuestionOptionDtoConverterTest {
 	@Configuration
 	public static class QuestionOptionToQuestionOptionDtoConverterTestConfiguration {
 		@Bean
-		public ModelToDtoConverter<QuestionOption, QuestionOptionDTO> optionToOptionDtoConverter() {
+		public ObjectConverter<QuestionOption, QuestionOptionDTO> optionToOptionDtoConverter() {
 			return new QuestionOptionToQuestionOptionDtoConverter();
 		}
 

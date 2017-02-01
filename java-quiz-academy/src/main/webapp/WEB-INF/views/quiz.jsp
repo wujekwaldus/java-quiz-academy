@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/bootstrap-theme.min.css" />" rel="stylesheet">
+<script src="<c:url value="/resources/js/jquery-3.1.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 <title>Java Academy Quiz</title>
 </head>
@@ -37,10 +38,6 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<button type="submit" class="btn btn-default">Zakończ test</button>
 		</form>
-
 	</div>
-
-
-
 </body>
 </html>

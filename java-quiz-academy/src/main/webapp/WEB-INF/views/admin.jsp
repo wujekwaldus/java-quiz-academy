@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,24 +14,13 @@
 <title>Java Academy</title>
 </head>
 <body>
-	<div class="jumbotron text-center">
-		<h1>Java Academy</h1>
-		<p>Sprawdź na jakim poziomie jest Twoja wiedza z programowania!</p>
-		<button type="button" class="btn btn-default">Quiz</button>
-		<button type="button" class="btn btn-default">O mnie</button>
-		<button type="button" class="btn btn-default">Praca w IT - FAQ</button>
-		<button type="button" class="btn btn-default">Szkolenia JAVA</button>
-		<button type="button" class="btn btn-default">Rejestracja</button>
-		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginModalDiv">Logowanie</button>
-
-	</div>
+	<jsp:include page="menu.jsp" />
 	<div class="container">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="font-weight: bold;">Panel Administracyjny</div>
+			<div class="panel-heading" style="font-weight: bold;">Panel administracyjny</div>
 			<div class="panel-body">
 				<div class="row">
-					<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/'">Powrót na
-						stronę główną</button>
+					<p>Panel administracyjny</p>
 				</div>
 			</div>
 		</div>

@@ -11,16 +11,16 @@ import pl.academy.quiz.dto.QuestionOptionDTO;
 import pl.academy.quiz.model.Question;
 import pl.academy.quiz.model.QuestionArea;
 import pl.academy.quiz.model.QuestionOption;
-import pl.academy.quiz.service.ModelToDtoConverter;
+import pl.academy.quiz.service.ObjectConverter;
 
 @Service
-public class QuestionToQuestionDtoConverter implements ModelToDtoConverter<Question, QuestionDTO> {
+public class QuestionToQuestionDtoConverter implements ObjectConverter<Question, QuestionDTO> {
 
 	@Autowired
-	private ModelToDtoConverter<QuestionOption, QuestionOptionDTO> optionsConverter;
+	private ObjectConverter<QuestionOption, QuestionOptionDTO> optionsConverter;
 	
 	@Autowired
-	private ModelToDtoConverter<QuestionArea, QuestionAreaDTO> areaConverter;
+	private ObjectConverter<QuestionArea, QuestionAreaDTO> areaConverter;
 
 	@Override
 	public QuestionDTO convert(Question model) {

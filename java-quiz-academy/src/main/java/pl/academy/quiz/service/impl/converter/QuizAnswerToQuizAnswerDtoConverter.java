@@ -10,13 +10,13 @@ import pl.academy.quiz.dto.QuestionOptionDTO;
 import pl.academy.quiz.dto.QuizAnswerDTO;
 import pl.academy.quiz.model.QuestionOption;
 import pl.academy.quiz.model.QuizAnswer;
-import pl.academy.quiz.service.ModelToDtoConverter;
+import pl.academy.quiz.service.ObjectConverter;
 
 @Service
-public class QuizAnswerToQuizAnswerDtoConverter implements ModelToDtoConverter<QuizAnswer, QuizAnswerDTO> {
+public class QuizAnswerToQuizAnswerDtoConverter implements ObjectConverter<QuizAnswer, QuizAnswerDTO> {
 
 	@Autowired
-	private ModelToDtoConverter<QuestionOption, QuestionOptionDTO> optionConverter;
+	private ObjectConverter<QuestionOption, QuestionOptionDTO> optionConverter;
 
 	@Override
 	public QuizAnswerDTO convert(QuizAnswer model) {

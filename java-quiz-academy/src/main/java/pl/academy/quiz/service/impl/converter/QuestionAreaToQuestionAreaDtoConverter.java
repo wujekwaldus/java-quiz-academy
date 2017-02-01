@@ -4,10 +4,10 @@ import org.springframework.stereotype.Service;
 
 import pl.academy.quiz.dto.QuestionAreaDTO;
 import pl.academy.quiz.model.QuestionArea;
-import pl.academy.quiz.service.ModelToDtoConverter;
+import pl.academy.quiz.service.ObjectConverter;
 
 @Service
-public class QuestionAreaToQuestionAreaDtoConverter implements ModelToDtoConverter<QuestionArea, QuestionAreaDTO> {
+public class QuestionAreaToQuestionAreaDtoConverter implements ObjectConverter<QuestionArea, QuestionAreaDTO> {
 
 	@Override
 	public QuestionAreaDTO convert(QuestionArea model) {

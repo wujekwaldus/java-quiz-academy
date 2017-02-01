@@ -14,26 +14,7 @@
 <title>Java Academy</title>
 </head>
 <body>
-	<div class="jumbotron text-center">
-		<h1>Java Academy</h1>
-		<p>Sprawdź na jakim poziomie jest Twoja wiedza z programowania!</p>
-		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/'">Quiz</button>
-		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/about'">O mnie</button>
-		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/workFAQ'">Praca w IT - FAQ</button>
-		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/trening'">Szkolenia JAVA</button>
-		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/registration'">Rejestracja</button>
-		<sec:authorize var="loggedIn" access="isAuthenticated()" />
-		<sec:authentication var="user" property="principal" />
-		<c:choose>
-			<c:when test="${loggedIn}">
-				<button type="button" class="btn btn-success" onclick="$('#logoutForm').submit();">Wyloguj: ${user.username}</button>
-			</c:when>
-			<c:otherwise>
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginModalDiv">Logowanie</button>
-			</c:otherwise>
-		</c:choose>
-
-	</div>
+	<jsp:include page="menu.jsp"/>
 	<div class="container">
 		<spring:hasBindErrors name="randomQuizSearchCriteria">
 			<div class="panel panel-danger">
@@ -53,8 +34,6 @@
 				<p>Zostałeś wylogowany.</p>
 			</div>
 		</c:if>
-
-
 		<div class="panel panel-default">
 			<div class="panel-heading" style="font-weight: bold;">Skonfiguruj swój test</div>
 			<form action="/java-quiz-academy/quiz/">
@@ -91,37 +70,6 @@
 				</div>
 			</form>
 		</div>
-
-		<div id="loginModalDiv" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Panel logowania użytkownika</h4>
-					</div>
-					<div class="modal-body">
-						<c:url var="loginUrl" value="/" />
-						<form action="${loginUrl}" method="POST">
-							<div class="form-group">
-								<label for="email">Nazwa użytkownika</label> <input type="text" class="form-control" id="email" name="email">
-							</div>
-							<div class="form-group">
-								<label for="password">Hasło:</label> <input type="password" class="form-control" id="password" name="password">
-							</div>
-							<button type="submit" class="btn btn-default">Zaloguj</button>
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-
 	</div>
-	<c:if test="${loggedIn}">
-		<c:url value="/logout" var="logoutUrl" />
-		<form action="${logoutUrl}" method="post" id="logoutForm">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		</form>
-	</c:if>
 </body>
 </html>

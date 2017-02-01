@@ -15,12 +15,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.academy.quiz.dto.QuestionAreaDTO;
 import pl.academy.quiz.model.QuestionArea;
-import pl.academy.quiz.service.ModelToDtoConverter;
+import pl.academy.quiz.service.ObjectConverter;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = QuestionAreaToQuestionAreaDtoConverterTest.QuestionAreaToQuestionAreaDtoConverterTestConfiguration.class)
 public class QuestionAreaToQuestionAreaDtoConverterTest {
 	@Autowired
-	private ModelToDtoConverter<QuestionArea, QuestionAreaDTO> areaToAreaDtoConverter;
+	private ObjectConverter<QuestionArea, QuestionAreaDTO> areaToAreaDtoConverter;
 
 	@Test
 	public void shouldConvertAreaToAreaDto() {
@@ -47,7 +47,7 @@ public class QuestionAreaToQuestionAreaDtoConverterTest {
 	@Configuration
 	public static class QuestionAreaToQuestionAreaDtoConverterTestConfiguration {
 		@Bean
-		public ModelToDtoConverter<QuestionArea, QuestionAreaDTO> areaToAreaDtoConverter() {
+		public ObjectConverter<QuestionArea, QuestionAreaDTO> areaToAreaDtoConverter() {
 			return new QuestionAreaToQuestionAreaDtoConverter();
 		}
 

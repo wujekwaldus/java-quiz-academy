@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pl.academy.quiz.form.UserRegistrationForm;
 import pl.academy.quiz.model.Question;
 import pl.academy.quiz.service.QuestionAreaService;
 
@@ -31,7 +32,8 @@ public class StartController {
 	}
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
-	public String registration() {
+	public String registration(ModelMap model) {
+		model.addAttribute("userForm", new UserRegistrationForm());
 		return "registration";
 	}
 

@@ -25,17 +25,17 @@ import pl.academy.quiz.model.Question;
 import pl.academy.quiz.model.QuestionOption;
 import pl.academy.quiz.model.QuizAnswer;
 import pl.academy.quiz.model.QuizResult;
-import pl.academy.quiz.service.ModelToDtoConverter;
+import pl.academy.quiz.service.ObjectConverter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = QuizResultToQuizResultDtoConverterTest.QuizResultToQuizResultDtoConverterTestConfiguration.class)
 public class QuizResultToQuizResultDtoConverterTest {
 
 	@Autowired
-	private ModelToDtoConverter<QuizResult, QuizResultDTO> quizResultConverter;
+	private ObjectConverter<QuizResult, QuizResultDTO> quizResultConverter;
 
 	@Autowired
-	private ModelToDtoConverter<QuizAnswer, QuizAnswerDTO> answerConverter;
+	private ObjectConverter<QuizAnswer, QuizAnswerDTO> answerConverter;
 
 	@SuppressWarnings("unchecked")
 	@Before
@@ -98,14 +98,14 @@ public class QuizResultToQuizResultDtoConverterTest {
 	@Configuration
 	public static class QuizResultToQuizResultDtoConverterTestConfiguration {
 		@Bean
-		public ModelToDtoConverter<QuizResult, QuizResultDTO> quizResultToQuizResultDtoConverter() {
+		public ObjectConverter<QuizResult, QuizResultDTO> quizResultToQuizResultDtoConverter() {
 			return new QuizResultToQuizResultDtoConverter();
 		}
 
 		@SuppressWarnings("unchecked")
 		@Bean
-		public ModelToDtoConverter<QuizAnswer, QuizAnswerDTO> answerConverter() {
-			return Mockito.mock(ModelToDtoConverter.class);
+		public ObjectConverter<QuizAnswer, QuizAnswerDTO> answerConverter() {
+			return Mockito.mock(ObjectConverter.class);
 		}
 
 	}

@@ -1,8 +1,8 @@
 insert into quizUserRole (id, authority) values (1, 'ROLE_ADMIN');
 insert into quizUserRole (id, authority) values (2, 'ROLE_USER');
 
-insert into quizUser (id, email, password) values (1, 'admin', '$2a$10$LgANaJAQD9NIeUem5AXdLuPD90VX/dDCjTLZARLVDeaL0LhDYIzIa');
-insert into quizUser (id, email, password) values (2, 'test', '$2a$10$pZYb5IGsCAWCOIKH4VhnKeO.AtkG9zpAmlEwFOC2k8OvYdICBSFcO');
+insert into quizUser (id, name, email, password) values (1, 'Administrator', 'admin', '$2a$10$LgANaJAQD9NIeUem5AXdLuPD90VX/dDCjTLZARLVDeaL0LhDYIzIa');
+insert into quizUser (id, name, email, password) values (2, 'Waldek', 'test', '$2a$10$pZYb5IGsCAWCOIKH4VhnKeO.AtkG9zpAmlEwFOC2k8OvYdICBSFcO');
 
 insert into user_role (user_id, role_id) values (1,1);
 insert into user_role (user_id, role_id) values (1,2);

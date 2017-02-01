@@ -16,7 +16,7 @@ import pl.academy.quiz.dto.QuizResultDTO;
 import pl.academy.quiz.model.Question;
 import pl.academy.quiz.model.QuizResult;
 import pl.academy.quiz.search.criteria.RandomQuizSearchCriteria;
-import pl.academy.quiz.service.ModelToDtoConverter;
+import pl.academy.quiz.service.ObjectConverter;
 import pl.academy.quiz.service.QuestionService;
 import pl.academy.quiz.service.QuizService;
 
@@ -32,10 +32,10 @@ public class QuestionController {
 	private QuizService quizService;
 
 	@Autowired
-	private ModelToDtoConverter<Question, QuestionDTO> questionConverter;
+	private ObjectConverter<Question, QuestionDTO> questionConverter;
 
 	@Autowired
-	private ModelToDtoConverter<QuizResult, QuizResultDTO> quizConverter;
+	private ObjectConverter<QuizResult, QuizResultDTO> quizConverter;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getRandomQuiz(@ModelAttribute @Valid RandomQuizSearchCriteria quizSearchCriteria, BindingResult result, ModelMap model) {

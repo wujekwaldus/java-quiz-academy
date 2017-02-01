@@ -31,20 +31,20 @@ import pl.academy.quiz.model.Question;
 import pl.academy.quiz.model.Question.QuestionType;
 import pl.academy.quiz.model.QuestionArea;
 import pl.academy.quiz.model.QuestionOption;
-import pl.academy.quiz.service.ModelToDtoConverter;
+import pl.academy.quiz.service.ObjectConverter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = QuestionToQuestionDtoConverterTest.QuestionToQuestionDtoConverterTestConfiguration.class)
 public class QuestionToQuestionDtoConverterTest {
 
 	@Autowired
-	private ModelToDtoConverter<Question, QuestionDTO> questionToQuestionDtoConverter;
+	private ObjectConverter<Question, QuestionDTO> questionToQuestionDtoConverter;
 
 	@Autowired
-	private ModelToDtoConverter<QuestionOption, QuestionOptionDTO> optionToOptionDtoConverter;
+	private ObjectConverter<QuestionOption, QuestionOptionDTO> optionToOptionDtoConverter;
 
 	@Autowired
-	private ModelToDtoConverter<QuestionArea, QuestionAreaDTO> areaToAreaDtoConverter;
+	private ObjectConverter<QuestionArea, QuestionAreaDTO> areaToAreaDtoConverter;
 
 	@SuppressWarnings("unchecked")
 	@Before
@@ -108,20 +108,20 @@ public class QuestionToQuestionDtoConverterTest {
 	public static class QuestionToQuestionDtoConverterTestConfiguration {
 
 		@Bean
-		public ModelToDtoConverter<Question, QuestionDTO> questionToQuestionDtoConverter() {
+		public ObjectConverter<Question, QuestionDTO> questionToQuestionDtoConverter() {
 			return new QuestionToQuestionDtoConverter();
 		}
 
 		@SuppressWarnings("unchecked")
 		@Bean
-		public ModelToDtoConverter<QuestionOption, QuestionOptionDTO> optionToOptionDtoConverter() {
-			return Mockito.mock(ModelToDtoConverter.class);
+		public ObjectConverter<QuestionOption, QuestionOptionDTO> optionToOptionDtoConverter() {
+			return Mockito.mock(ObjectConverter.class);
 		}
 
 		@SuppressWarnings("unchecked")
 		@Bean
-		public ModelToDtoConverter<QuestionArea, QuestionAreaDTO> areaToAreaDtoConverter() {
-			return Mockito.mock(ModelToDtoConverter.class);
+		public ObjectConverter<QuestionArea, QuestionAreaDTO> areaToAreaDtoConverter() {
+			return Mockito.mock(ObjectConverter.class);
 		}
 	}
 }
