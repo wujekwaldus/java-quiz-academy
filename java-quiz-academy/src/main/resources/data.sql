@@ -4,9 +4,9 @@ insert into quizUserRole (id, authority) values (2, 'ROLE_USER');
 insert into quizUser (id, name, email, password) values (1, 'Administrator', 'admin', '$2a$10$LgANaJAQD9NIeUem5AXdLuPD90VX/dDCjTLZARLVDeaL0LhDYIzIa');
 insert into quizUser (id, name, email, password) values (2, 'Waldek', 'test', '$2a$10$pZYb5IGsCAWCOIKH4VhnKeO.AtkG9zpAmlEwFOC2k8OvYdICBSFcO');
 
-insert into user_role (user_id, role_id) values (1,1);
-insert into user_role (user_id, role_id) values (1,2);
-insert into user_role (user_id, role_id) values (2,2);
+insert into user_roles (user_id, role_id) values (1,1);
+insert into user_roles (user_id, role_id) values (1,2);
+insert into user_roles (user_id, role_id) values (2,2);
 
 insert into questionArea (id, name) values (1, 'Wzorce Projektowe');
 insert into questionArea (id, name) values (2, 'Zarzadzanie Projektem');
