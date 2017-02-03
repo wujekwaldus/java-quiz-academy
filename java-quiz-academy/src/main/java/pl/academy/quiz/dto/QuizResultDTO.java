@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.academy.quiz.util.DateUtil;
 
 @Data
 @NoArgsConstructor
@@ -20,5 +21,9 @@ public class QuizResultDTO {
 	public int getScore() {
 		long score = answers.stream().filter(QuizAnswerDTO::isCorrect).count();
 		return (int) (((double) score / answers.size()) * 100);
+	}
+
+	public String getResolveDateFormatted() {
+		return DateUtil.formatFullDate(resolveDate);
 	}
 }

@@ -28,7 +28,7 @@ public class QuestionOption implements Serializable {
 	private static final long serialVersionUID = -2365654215511172562L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String text;
 	private int points;

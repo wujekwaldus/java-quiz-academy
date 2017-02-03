@@ -112,4 +112,3 @@ insert into questionOption (id, text, points, question_id) values(54,'Przestrzen
 insert into question (id, text, type, level, area_id, availablePoints) values (18,'Czy final zapobiega dodawaniu lub usuwaniu elementow na ArrayList?', 'SINGLE_CHOICE', 'ADVANCED', 8, 1);
 insert into questionOption (id, text, points, question_id) values(55,'Tak',0,18);
 insert into questionOption (id, text, points, question_id) values(56,'Nie',1,18);
-

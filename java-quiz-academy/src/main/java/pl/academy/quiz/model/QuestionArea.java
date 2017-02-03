@@ -21,7 +21,7 @@ public class QuestionArea implements Serializable {
 	private static final long serialVersionUID = 5942077728911704957L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 }

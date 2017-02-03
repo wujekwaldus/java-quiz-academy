@@ -5,16 +5,28 @@ import java.util.Properties;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import pl.academy.quiz.auditor.QuizUserAuditorAware;
+import pl.academy.quiz.model.QuizUser;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories("pl.academy.quiz.repository")
+@EnableJpaAuditing(auditorAwareRef = "quizUserAuditor")
 public class JavaQuizPersistanceConfiguration {
+
+	@Bean
+	public AuditorAware<QuizUser> quizUserAuditor() {
+		return new QuizUserAuditorAware();
+	}
+
 	@Bean
 	public DriverManagerDataSource dataSource() {
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();

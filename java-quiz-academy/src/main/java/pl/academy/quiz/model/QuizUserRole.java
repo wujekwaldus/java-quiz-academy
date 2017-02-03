@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class QuizUserRole implements GrantedAuthority {
 	private static final long serialVersionUID = -5729953921439446846L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String authority;
 

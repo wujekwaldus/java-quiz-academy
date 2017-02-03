@@ -1,4 +1,3 @@
-<%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -14,6 +13,7 @@
 		JAVA</button>
 	<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/registration'">Rejestracja</button>
 	<sec:authorize var="loggedIn" access="isAuthenticated()" />
+	<sec:authorize var="isAdmin" access="hasAnyRole('ADMIN')" />
 	<sec:authentication var="user" property="principal" />
 	<c:choose>
 		<c:when test="${loggedIn}">
@@ -23,6 +23,12 @@
 			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginModalDiv">Logowanie</button>
 		</c:otherwise>
 	</c:choose>
+	<c:if test="${loggedIn}">
+		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/user/me'">Mój profil</button>
+	</c:if>
+	<c:if test="${isAdmin}">
+		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/admin/'">Panel Administracyjny</button>
+	</c:if>
 	<c:if test="${loggedIn}">
 		<c:url value="/logout" var="logoutUrl" />
 		<form action="${logoutUrl}" method="post" id="logoutForm">

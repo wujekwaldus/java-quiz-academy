@@ -31,7 +31,7 @@ public class QuizAnswer implements Serializable {
 	private static final long serialVersionUID = -5470520409444497907L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
