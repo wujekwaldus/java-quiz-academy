@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.academy.quiz.dto.QuizResultDTO;
 import pl.academy.quiz.form.UserRegistrationForm;
+import pl.academy.quiz.model.Question;
 import pl.academy.quiz.model.QuizResult;
 import pl.academy.quiz.model.QuizUser;
 import pl.academy.quiz.service.ObjectConverter;
+import pl.academy.quiz.service.QuestionAreaService;
 import pl.academy.quiz.service.QuizUserService;
 
 @Controller
@@ -24,6 +26,9 @@ public class UserController {
 
 	@Autowired
 	private QuizUserService userService;
+	
+	@Autowired
+	private QuestionAreaService questionAreaService;
 	
 	@Autowired
 	private ObjectConverter<QuizResult, QuizResultDTO> resultConverter;
@@ -49,6 +54,8 @@ public class UserController {
 	@Secured("ROLE_USER")
 	public String myProfile(ModelMap model) {
 		model.addAttribute("results", resultConverter.convert(userService.getMyTestResults()));
+		model.addAttribute("areas", questionAreaService.getAllAreas());
+		model.addAttribute("levels", Question.QuestionLevel.values());
 		return "myProfile";
 	}
 
