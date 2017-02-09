@@ -12,9 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pl.academy.quiz.command.RandomQuizSearchCommand;
 import pl.academy.quiz.model.Question;
 import pl.academy.quiz.repository.QuestionRepository;
-import pl.academy.quiz.search.criteria.RandomQuizSearchCriteria;
 import pl.academy.quiz.service.QuestionService;
 
 @Service
@@ -26,7 +26,7 @@ public class QuestionServiceImpl implements QuestionService {
 	private QuestionRepository questionRepository;
 
 	@Override
-	public List<Question> getRandomQuestions(RandomQuizSearchCriteria searchCriteria) {
+	public List<Question> getRandomQuestions(RandomQuizSearchCommand searchCriteria) {
 		LOG.info("quizSearchCriteria: {}", searchCriteria);
 		Pageable topThree = new PageRequest(0, 3);
 

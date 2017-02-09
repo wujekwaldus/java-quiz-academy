@@ -16,9 +16,8 @@
 <script type="text/javascript">
 	var answerIndex = 0;
 	function newAnswer() {
-		var newAnswerDivContent = $('#newQuestionAnswers').html();
-		var newAnswerTemplate = '<input type="text" class="form-control" name="text_'+answerIndex+'" placeholder="Wpisz treść odpowiedzi">Poprawna: <input type="checkbox" name="isValid_'+answerIndex+'" value="1"/><br/>';
-		$('#newQuestionAnswers').html(newAnswerDivContent+newAnswerTemplate);
+		var newAnswerTemplate = '<input type="text" class="form-control" name="answers['+answerIndex+'].text" placeholder="Wpisz treść odpowiedzi">Poprawna: <input type="checkbox" name="answer['+answerIndex+'].correct" value="true"/><br/>';
+		$('#newQuestionAnswers').append(newAnswerTemplate);
 		answerIndex++;
 	}
 </script>
@@ -27,6 +26,30 @@
 	<jsp:include page="menu.jsp" />
 	<sec:authentication var="user" property="principal" />
 	<div class="container">
+
+		<spring:hasBindErrors name="newQuestionCommand">
+			<div class="panel panel-danger">
+				<div class="panel-heading" style="font-weight: bold;">Wystąpiły następujące błędy walidacji:</div>
+				<div class="panel-body" style="font-weight: bold;">
+					<c:if test="${errors.hasFieldErrors('area')}">
+					 ${errors.getFieldError('area').defaultMessage} <br />
+					</c:if>
+					<c:if test="${errors.hasFieldErrors('level')}">
+					  ${errors.getFieldError('level').defaultMessage} <br />
+					</c:if>
+					<c:if test="${errors.hasFieldErrors('text')}">
+					  ${errors.getFieldError('text').defaultMessage} <br />
+					</c:if>
+					<c:if test="${errors.hasFieldErrors('type')}">
+					  ${errors.getFieldError('type').defaultMessage} <br />
+					</c:if>
+					<c:if test="${errors.hasFieldErrors('answers')}">
+					 ${errors.getFieldError('answers').defaultMessage} <br />
+					</c:if>
+				</div>
+			</div>
+		</spring:hasBindErrors>
+
 		<div class="panel panel-default">
 			<div class="panel-heading" style="font-weight: bold;">Witaj: ${user.name}</div>
 			<div class="panel-body">
@@ -122,7 +145,7 @@
 										<h4 class="modal-title">Nowe Pytanie</h4>
 									</div>
 									<div class="modal-body">
-										<form>
+										<form action="/java-quiz-academy/question/new" method="post">
 											<div class="form-group">
 												<label for="area">Kategoria pytania:</label><br />
 												<c:forEach items="${areas}" var="area">
@@ -140,15 +163,17 @@
 												<textarea class="form-control" rows="4" name="text"></textarea>
 											</div>
 											<div class="form-group">
-												<label for="text">Rodzaj pytania:</label> <br /> <input type="radio" value="SINGLE_CHOICE" name="type"
+												<label for="type">Rodzaj pytania:</label> <br /> <input type="radio" value="SINGLE_CHOICE" name="type"
 													checked="checked">Jednokrotny wybór <input type="radio" value="MULTIPLE_CHOICE" name="type">Wielokrotny
 												wybór
 											</div>
 											<div class="form-group">
 												<label for="text">Odpowiedzi:</label><br />
-												<button type="button" class="btn btn-success btn-xs" onclick="newAnswer()">Nowa odpowiedź (+)</button><br/>
+												<button type="button" class="btn btn-success btn-xs" onclick="newAnswer()">Nowa odpowiedź (+)</button>
+												<br />
 												<div id="newQuestionAnswers"></div>
 											</div>
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 											<button type="submit" class="btn btn-default">Wyślij pytanie</button>
 										</form>
 									</div>

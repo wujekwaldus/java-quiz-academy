@@ -1,4 +1,4 @@
-package pl.academy.quiz.search.criteria;
+package pl.academy.quiz.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import pl.academy.quiz.validation.annotation.QuestionLevelValue;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RandomQuizSearchCriteria {
+public class RandomQuizSearchCommand {
 	@QuestionAreaValue(message="Należy wybrać przynajmniej jeden obszar")
 	private long[] area;
 	@QuestionLevelValue

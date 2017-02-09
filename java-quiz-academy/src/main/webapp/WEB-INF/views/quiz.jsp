@@ -16,18 +16,19 @@
 	</div>
 	<div class="container">
 		<form action="/java-quiz-academy/quiz/finish" method="post">
-			<c:forEach items="${questions}" var="q">
+			<c:forEach items="${questions}" var="q" varStatus="quesionStatus">
+				<input type="hidden" name="answers[${quesionStatus.index}].quesionId" value="${q.id}"/>
 				<div class="panel panel-default">
 					<div class="panel-heading" style="font-weight: bold;">${q.text}</div>
 					<div class="panel-body">
 
-						<c:forEach var="o" items="${q.options}">
+						<c:forEach var="o" items="${q.options}" varStatus="optionStatus">
 							<div class="row" style="margin-left: 20px;">
 								<c:if test="${q.type=='SINGLE_CHOICE'}">
-									<input type="radio" name="answer_${q.id}" value="${o.id}" />${o.text}
+									<input type="radio" name="answers[${quesionStatus.index}].answerIds[0]}" value="${o.id}" />${o.text}
 						</c:if>
 								<c:if test="${q.type=='MULTIPLE_CHOICE'}">
-									<input type="checkbox" name="answer_${q.id}" value="${o.id}" />${o.text}
+									<input type="checkbox" name="answers[${quesionStatus.index}].answerIds[${optionStatus.index}]}" value="${o.id}" />${o.text}
 						</c:if>
 							</div>
 						</c:forEach>
@@ -35,7 +36,7 @@
 					<div class="panel-footer" style="font-weight: bold; font-size: 10px;">${q.area.name}</div>
 				</div>
 			</c:forEach>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<button type="submit" class="btn btn-default">Zakończ test</button>
 		</form>
 	</div>

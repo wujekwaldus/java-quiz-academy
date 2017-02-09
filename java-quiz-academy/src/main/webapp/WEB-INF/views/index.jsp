@@ -14,13 +14,18 @@
 <title>Java Academy</title>
 </head>
 <body>
-	<jsp:include page="menu.jsp"/>
+	<jsp:include page="menu.jsp" />
 	<div class="container">
-		<spring:hasBindErrors name="randomQuizSearchCriteria">
+		<spring:hasBindErrors name="randomQuizSearchCommand">
 			<div class="panel panel-danger">
 				<div class="panel-heading" style="font-weight: bold;">Wystąpiły następujące błędy walidacji:</div>
 				<div class="panel-body" style="font-weight: bold;">
-					${errors.hasFieldErrors('area') ? errors.getFieldError('area').defaultMessage : ''}<br /> ${errors.hasFieldErrors('level') ? errors.getFieldError('level').defaultMessage : ''}<br />
+					<c:if test="${errors.hasFieldErrors('area')}">
+					  ${errors.getFieldError('area').defaultMessage }<br />
+					</c:if>
+					<c:if test="${errors.hasFieldErrors('level')}">
+					  ${errors.getFieldError('level').defaultMessage }<br />
+					</c:if>
 				</div>
 			</div>
 		</spring:hasBindErrors>

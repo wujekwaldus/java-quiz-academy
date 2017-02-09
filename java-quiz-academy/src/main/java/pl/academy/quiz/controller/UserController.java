@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pl.academy.quiz.command.UserRegistrationCommand;
 import pl.academy.quiz.dto.QuizResultDTO;
-import pl.academy.quiz.form.UserRegistrationForm;
 import pl.academy.quiz.model.Question;
 import pl.academy.quiz.model.QuizResult;
 import pl.academy.quiz.model.QuizUser;
@@ -34,10 +34,10 @@ public class UserController {
 	private ObjectConverter<QuizResult, QuizResultDTO> resultConverter;
 
 	@Autowired
-	private ObjectConverter<UserRegistrationForm, QuizUser> userConverter;
+	private ObjectConverter<UserRegistrationCommand, QuizUser> userConverter;
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String newUser(@ModelAttribute("userForm") @Valid UserRegistrationForm form, BindingResult result, ModelMap model) {
+	public String newUser(@ModelAttribute("userForm") @Valid UserRegistrationCommand form, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
 			form.setPassword(null);
 			form.setPasswordRepeated(null);

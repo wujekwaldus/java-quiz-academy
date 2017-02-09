@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import pl.academy.quiz.form.UserRegistrationForm;
+import pl.academy.quiz.command.UserRegistrationCommand;
 import pl.academy.quiz.model.QuizUser;
 import pl.academy.quiz.repository.QuizUserRoleRepository;
 import pl.academy.quiz.service.ObjectConverter;
 
 @Service
-public class UserRegistrationFormToQuizUserConverter implements ObjectConverter<UserRegistrationForm, QuizUser> {
+public class UserRegistrationCommandToQuizUserConverter implements ObjectConverter<UserRegistrationCommand, QuizUser> {
 
 	@Autowired
 	private QuizUserRoleRepository userRoleRepository;
@@ -19,7 +19,7 @@ public class UserRegistrationFormToQuizUserConverter implements ObjectConverter<
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-	public QuizUser convert(UserRegistrationForm model) {
+	public QuizUser convert(UserRegistrationCommand model) {
 		return QuizUser.builder()//
 				.email(model.getEmail())//
 				.password(passwordEncoder.encode(model.getPassword()))//

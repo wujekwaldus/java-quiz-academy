@@ -85,11 +85,11 @@ public class QuestionToQuestionDtoConverterTest {
 		// given
 		List<Question> questions = new ArrayList<>();
 		questions.add(new Question(1L, "Question no: 1", SINGLE_CHOICE, JUNIOR, QuestionArea.builder().name("area").build(), 1,
-				generateOptions(4)));
-		questions.add(
-				new Question(2L, "Question no: 2", SINGLE_CHOICE, MID, QuestionArea.builder().name("area").build(), 1, generateOptions(4)));
+				generateOptions(4), true, null));
+		questions.add(new Question(2L, "Question no: 2", SINGLE_CHOICE, MID, QuestionArea.builder().name("area").build(), 1,
+				generateOptions(4), true, null));
 		questions.add(new Question(3L, "Question no: 3", SINGLE_CHOICE, ADVANCED, QuestionArea.builder().name("area").build(), 1,
-				generateOptions(4)));
+				generateOptions(4), true, null));
 		// when
 		Collection<QuestionDTO> result = questionToQuestionDtoConverter.convert(questions);
 		// then

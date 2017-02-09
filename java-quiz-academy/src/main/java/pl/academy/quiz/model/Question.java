@@ -3,7 +3,9 @@ package pl.academy.quiz.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -13,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,9 +33,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @Entity
+@EntityListeners(value = AuditingEntityListener.class)
 public class Question implements Serializable {
 	private static final long serialVersionUID = 1273901372239445061L;
-	
+
 	public static enum QuestionType {
 		SINGLE_CHOICE, MULTIPLE_CHOICE, OPEN_TEXT;
 	}
@@ -63,5 +69,12 @@ public class Question implements Serializable {
 	private int availablePoints;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
 	private Set<QuestionOption> options;
+
+	@Column(nullable = true)
+	private Boolean active;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID", nullable = true)
+	@CreatedBy
+	private QuizUser user;
 
 }
