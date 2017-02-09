@@ -3,6 +3,7 @@ package pl.academy.quiz.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -67,7 +68,7 @@ public class Question implements Serializable {
 	@JoinColumn(name = "AREA_ID")
 	private QuestionArea area;
 	private int availablePoints;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "question", cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	private Set<QuestionOption> options;
 
 	@Column(nullable = true)

@@ -37,4 +37,9 @@ public class QuestionServiceImpl implements QuestionService {
 		return result;
 	}
 
+	@Override
+	public Question saveQuestion(Question question) {
+		return questionRepository.saveAndFlush(question);
+	}
+
 }
