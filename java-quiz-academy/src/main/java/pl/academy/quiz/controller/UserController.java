@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.academy.quiz.command.UserRegistrationCommand;
+import pl.academy.quiz.command.RegisterUserCommand;
 import pl.academy.quiz.dto.QuizResultDTO;
 import pl.academy.quiz.model.QuizResult;
 import pl.academy.quiz.model.QuizUser;
 import pl.academy.quiz.service.ObjectConverter;
+import pl.academy.quiz.service.QuestionService;
 import pl.academy.quiz.service.QuizUserService;
 
 @Controller
@@ -25,14 +26,17 @@ public class UserController {
 	@Autowired
 	private QuizUserService userService;
 
+//	@Autowired
+//	private QuestionService questionService;
+
 	@Autowired
 	private ObjectConverter<QuizResult, QuizResultDTO> resultConverter;
 
 	@Autowired
-	private ObjectConverter<UserRegistrationCommand, QuizUser> userConverter;
+	private ObjectConverter<RegisterUserCommand, QuizUser> userConverter;
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String newUser(@ModelAttribute("userForm") @Valid UserRegistrationCommand form, BindingResult result, ModelMap model) {
+	public String newUser(@ModelAttribute("userForm") @Valid RegisterUserCommand form, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
 			form.setPassword(null);
 			form.setPasswordRepeated(null);
@@ -48,10 +52,8 @@ public class UserController {
 	@Secured("ROLE_USER")
 	public String myProfileView(ModelMap model) {
 		model.addAttribute("results", resultConverter.convert(userService.getMyTestResults()));
-		//model.addAttribute(attributeName, attributeValue)
+		//model.addAttribute("questions", questionService.getUserQuesions());
 		return "myProfile";
 	}
-
-	
 
 }

@@ -8,13 +8,13 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import pl.academy.quiz.command.NewQuestionCommand;
-import pl.academy.quiz.command.NewQuestionCommand.NewAnswer;
+import pl.academy.quiz.command.CreateQuestionCommand;
+import pl.academy.quiz.command.CreateQuestionCommand.NewAnswer;
 import pl.academy.quiz.model.Question.QuestionType;
 import pl.academy.quiz.validation.annotation.NewAnswerValue;
 
 @Service
-public class NewAnswerValidator implements ConstraintValidator<NewAnswerValue, NewQuestionCommand> {
+public class NewAnswerValidator implements ConstraintValidator<NewAnswerValue, CreateQuestionCommand> {
 
 	@Override
 	public void initialize(NewAnswerValue constraintAnnotation) {
@@ -22,10 +22,16 @@ public class NewAnswerValidator implements ConstraintValidator<NewAnswerValue, N
 	}
 
 	@Override
-	public boolean isValid(NewQuestionCommand command, ConstraintValidatorContext context) {
+	public boolean isValid(CreateQuestionCommand command, ConstraintValidatorContext context) {
 		List<NewAnswer> value = command.getAnswers();
-		if (value == null || value.size() < 2)
+		if (value == null || value.size() < 2){
+			context.disableDefaultConstraintViolation();
+			context//
+					.buildConstraintViolationWithTemplate("Muszą być co najmniej dwie odpowiedzi.")//
+					.addPropertyNode("answers")//
+					.addConstraintViolation();//
 			return false;
+		}
 		long correctNo = value.stream().filter(NewAnswer::isCorrect).count();
 		if (correctNo == 0) {
 			context.disableDefaultConstraintViolation();
@@ -36,7 +42,7 @@ public class NewAnswerValidator implements ConstraintValidator<NewAnswerValue, N
 			return false;
 		}
 		long emptyText = value.stream().filter(a -> StringUtils.isEmpty(a.getText())).count();
-		if (emptyText == 0) {
+		if (emptyText > 0) {
 			context.disableDefaultConstraintViolation();
 			context//
 					.buildConstraintViolationWithTemplate("Tekst odpowiedzi nie może być pusty.")//

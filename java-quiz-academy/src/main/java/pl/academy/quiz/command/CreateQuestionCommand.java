@@ -20,7 +20,7 @@ import pl.academy.quiz.validation.annotation.QuestionTypeValue;
 @AllArgsConstructor
 @Builder
 @NewAnswerValue
-public class NewQuestionCommand implements Serializable {
+public class CreateQuestionCommand implements Serializable {
 	private static final long serialVersionUID = -3381379799469886845L;
 	@QuestionAreaValue(message = "Należy wybrać przynajmniej jeden obszar")
 	private long[] area;

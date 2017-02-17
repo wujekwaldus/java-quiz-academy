@@ -16,7 +16,7 @@ import pl.academy.quiz.validation.annotation.UniqueEmail;
 @NoArgsConstructor
 @Builder
 @SamePassword
-public class UserRegistrationCommand implements Serializable {
+public class RegisterUserCommand implements Serializable {
 	private static final long serialVersionUID = -1095853804455958871L;
 
 	@UniqueEmail

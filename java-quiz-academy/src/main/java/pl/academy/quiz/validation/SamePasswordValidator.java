@@ -6,11 +6,11 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import pl.academy.quiz.command.UserRegistrationCommand;
+import pl.academy.quiz.command.RegisterUserCommand;
 import pl.academy.quiz.validation.annotation.SamePassword;
 
 @Service
-public class SamePasswordValidator implements ConstraintValidator<SamePassword, UserRegistrationCommand> {
+public class SamePasswordValidator implements ConstraintValidator<SamePassword, RegisterUserCommand> {
 
 	@Override
 	public void initialize(SamePassword arg0) {
@@ -18,7 +18,7 @@ public class SamePasswordValidator implements ConstraintValidator<SamePassword, 
 	}
 
 	@Override
-	public boolean isValid(UserRegistrationCommand form, ConstraintValidatorContext ctx) {
+	public boolean isValid(RegisterUserCommand form, ConstraintValidatorContext ctx) {
 		if (StringUtils.isEmpty(form.getPassword())) {
 			ctx.buildConstraintViolationWithTemplate("Hasło nie może być puste").addPropertyNode("password").addConstraintViolation();
 			return false;

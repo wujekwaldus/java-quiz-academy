@@ -12,7 +12,7 @@ import pl.academy.quiz.validation.annotation.QuestionLevelValue;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RandomQuizSearchCommand {
+public class GetQuizCommand {
 	@QuestionAreaValue(message="Należy wybrać przynajmniej jeden obszar")
 	private long[] area;
 	@QuestionLevelValue

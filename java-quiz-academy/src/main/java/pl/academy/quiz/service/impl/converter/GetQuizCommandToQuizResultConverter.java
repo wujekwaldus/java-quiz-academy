@@ -18,7 +18,7 @@ import pl.academy.quiz.repository.QuestionRepository;
 import pl.academy.quiz.service.ObjectConverter;
 
 @Service
-public class SolveQuizCommandToQuizResultConverter implements ObjectConverter<SolveQuizCommand, QuizResult> {
+public class GetQuizCommandToQuizResultConverter implements ObjectConverter<SolveQuizCommand, QuizResult> {
 
 	@Autowired
 	private QuestionRepository questionRepository;

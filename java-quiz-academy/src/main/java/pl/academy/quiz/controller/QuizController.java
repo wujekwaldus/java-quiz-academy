@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.academy.quiz.command.RandomQuizSearchCommand;
+import pl.academy.quiz.command.GetQuizCommand;
 import pl.academy.quiz.command.SolveQuizCommand;
 import pl.academy.quiz.dto.QuestionDTO;
 import pl.academy.quiz.dto.QuizResultDTO;
@@ -41,7 +41,7 @@ public class QuizController {
 	private ObjectConverter<SolveQuizCommand, QuizResult> quizCommandConverter;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String getRandomQuiz(@ModelAttribute @Valid RandomQuizSearchCommand quizSearchCriteria, BindingResult result, ModelMap model) {
+	public String getRandomQuiz(@ModelAttribute @Valid GetQuizCommand quizSearchCriteria, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
 			return "forward:/?errors=true";
 		}

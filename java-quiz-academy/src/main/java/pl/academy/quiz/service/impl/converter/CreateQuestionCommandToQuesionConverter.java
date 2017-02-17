@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.academy.quiz.command.NewQuestionCommand;
-import pl.academy.quiz.command.NewQuestionCommand.NewAnswer;
+import pl.academy.quiz.command.CreateQuestionCommand;
+import pl.academy.quiz.command.CreateQuestionCommand.NewAnswer;
 import pl.academy.quiz.model.Question;
 import pl.academy.quiz.model.Question.QuestionLevel;
 import pl.academy.quiz.model.Question.QuestionType;
@@ -16,13 +16,13 @@ import pl.academy.quiz.repository.QuestionAreaRepository;
 import pl.academy.quiz.service.ObjectConverter;
 
 @Service
-public class NewQuestionCommandToQuesionConverter implements ObjectConverter<NewQuestionCommand, Question> {
+public class CreateQuestionCommandToQuesionConverter implements ObjectConverter<CreateQuestionCommand, Question> {
 
 	@Autowired
 	private QuestionAreaRepository areaRepository;
 
 	@Override
-	public Question convert(NewQuestionCommand model) {
+	public Question convert(CreateQuestionCommand model) {
 		return Question.builder()//
 				.active(Boolean.FALSE)//
 				.area(areaRepository.findOne(model.getArea()[0]))//
@@ -34,7 +34,7 @@ public class NewQuestionCommandToQuesionConverter implements ObjectConverter<New
 				.build();//
 	}
 
-	private Set<QuestionOption> createOptions(NewQuestionCommand model) {
+	private Set<QuestionOption> createOptions(CreateQuestionCommand model) {
 		return model.getAnswers().stream().map(this::toQuestionOption).collect(Collectors.toSet());
 	}
 
@@ -42,7 +42,7 @@ public class NewQuestionCommandToQuesionConverter implements ObjectConverter<New
 		return QuestionOption.builder().text(newAnswer.getText()).points(newAnswer.isCorrect() ? 1 : 0).build();
 	}
 
-	private int calculatePoints(NewQuestionCommand model) {
+	private int calculatePoints(CreateQuestionCommand model) {
 		return (int) model.getAnswers().stream().filter(NewAnswer::isCorrect).count();
 	}
 
