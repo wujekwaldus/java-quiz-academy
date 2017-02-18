@@ -28,8 +28,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@EqualsAndHashCode(exclude = { "area", "options" })
-@ToString(exclude = { "area", "options" })
+@EqualsAndHashCode(exclude = { "area", "options", "user" })
+@ToString(exclude = { "area", "options", "user" })
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -71,8 +71,8 @@ public class Question implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "question", cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	private Set<QuestionOption> options;
 
-	@Column(nullable = true)
-	private Boolean active;
+	@Column(columnDefinition="int default 1")
+	private boolean active;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID", nullable = true)
 	@CreatedBy

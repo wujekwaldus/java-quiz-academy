@@ -23,23 +23,24 @@ public class CreateQuestionCommandToQuesionConverter implements ObjectConverter<
 
 	@Override
 	public Question convert(CreateQuestionCommand model) {
-		return Question.builder()//
+		Question question = Question.builder()//
 				.active(Boolean.FALSE)//
 				.area(areaRepository.findOne(model.getArea()[0]))//
 				.text(model.getText())//
 				.level(QuestionLevel.valueOf(model.getLevel()))//
 				.availablePoints(calculatePoints(model))//
 				.type(QuestionType.valueOf(model.getType()))//
-				.options(createOptions(model))//
 				.build();//
+		question.setOptions(createOptions(model, question));
+		return question;
 	}
 
-	private Set<QuestionOption> createOptions(CreateQuestionCommand model) {
-		return model.getAnswers().stream().map(this::toQuestionOption).collect(Collectors.toSet());
+	private Set<QuestionOption> createOptions(CreateQuestionCommand model, Question question) {
+		return model.getAnswers().stream().map(a -> toQuestionOption(a, question)).collect(Collectors.toSet());
 	}
 
-	private QuestionOption toQuestionOption(NewAnswer newAnswer) {
-		return QuestionOption.builder().text(newAnswer.getText()).points(newAnswer.isCorrect() ? 1 : 0).build();
+	private QuestionOption toQuestionOption(NewAnswer newAnswer, Question question) {
+		return QuestionOption.builder().question(question).text(newAnswer.getText()).points(newAnswer.isCorrect() ? 1 : 0).build();
 	}
 
 	private int calculatePoints(CreateQuestionCommand model) {
