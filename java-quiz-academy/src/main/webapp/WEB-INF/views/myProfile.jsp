@@ -13,6 +13,15 @@
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Java Academy</title>
+<script type="text/javascript">
+	function setCursor(element, cursor) {
+		element.style.cursor = cursor;
+	}
+	function orderBy(field) {
+		$("#questionContextSortBy").val(field);
+		$("#questionContextForm").submit();
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="menu.jsp" />
@@ -91,18 +100,42 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th>Treść</th>
-									<th>Kategoria</th>
-									<th>Poziom trudności</th>
-									<th>Rodzaj</th>
-									<th>Akceptacja</th>
-									<th>Akcje</th>
+									<th class="col-sm-6" onmouseover="setCursor(this, 'pointer')" onmouseout="setCursor(this, 'default')"
+										onclick="orderBy('text')">Treść</th>
+									<th class="col-sm-1" onmouseover="setCursor(this, 'pointer')" onmouseout="setCursor(this, 'default')"
+										onclick="orderBy('category')">Kategoria</th>
+						 			<th class="col-sm-2" onmouseover="setCursor(this, 'pointer')" onmouseout="setCursor(this, 'default')"
+										onclick="orderBy('level')">Poziom trudności</th>
+									<th class="col-sm-1" onmouseover="setCursor(this, 'pointer')" onmouseout="setCursor(this, 'default')"
+										onclick="orderBy('active')">Akceptacja</th>
+									<th class="col-sm-2">Akcje</th>
 								</tr>
 							</thead>
 							<tbody>
-								<!-- TODO: moje pytania -->
+								<c:forEach var="q" items="${quesionContext.result}">
+									<tr>
+										<td>${q.text}</td>
+										<td>${q.area.name}</td>
+										<td>${q.level.text}</td>
+										<td><c:if test="${q.active}">
+												<input type="checkbox" disabled="disabled" checked="checked" />
+											</c:if> <c:if test="${!q.active}">
+												<input type="checkbox" disabled="disabled" />
+											</c:if></td>
+										<td><a href="#"> <span class="glyphicon glyphicon-remove"></span>
+										</a> <a href="#"> <span class="glyphicon glyphicon-edit"></span>
+										</a></td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
+						<form action="/java-quiz-academy/user/me" id="questionContextForm">
+							<input type="hidden" id="questionContextSortBy" name="sortBy" value ="${quesionContext.sortBy}"/>
+							<input type="hidden" id="questionContextLastSortBy" name="lastSortBy" value ="${quesionContext.lastSortBy}"/>
+							<input type="hidden" id="questionContextPageSize" name="pageSize" value ="${quesionContext.pageSize}"/>
+							<input type="hidden" id="questionContextPageNumber" name="pageNumber" value ="${quesionContext.pageNumber}"/>
+							<input type="hidden" id="questionContextSortDirection" name="sortDirection" value ="${quesionContext.sortDirection}"/>
+						</form>
 						<form action="/java-quiz-academy/question/newQuestion">
 							<button type="submit" class="btn btn-default btn-xs">Nowe Pytanie</button>
 						</form>

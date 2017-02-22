@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.academy.quiz.model.Question.QuestionLevel;
 import pl.academy.quiz.model.Question.QuestionType;
 
 @Data
@@ -18,4 +19,7 @@ public class QuestionDTO {
 	private QuestionType type;
 	private QuestionAreaDTO area;
 	private Set<QuestionOptionDTO> options;
+	
+	private boolean active;
+	private QuestionLevel level;
 }

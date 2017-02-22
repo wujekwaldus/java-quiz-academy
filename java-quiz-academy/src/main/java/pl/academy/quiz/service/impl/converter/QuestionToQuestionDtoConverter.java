@@ -18,7 +18,7 @@ public class QuestionToQuestionDtoConverter implements ObjectConverter<Question,
 
 	@Autowired
 	private ObjectConverter<QuestionOption, QuestionOptionDTO> optionsConverter;
-	
+
 	@Autowired
 	private ObjectConverter<QuestionArea, QuestionAreaDTO> areaConverter;
 
@@ -30,6 +30,8 @@ public class QuestionToQuestionDtoConverter implements ObjectConverter<Question,
 				.area(areaConverter.convert(model.getArea()))//
 				.type(model.getType())//
 				.options(new LinkedHashSet<>(optionsConverter.convert(model.getOptions())))//
+				.active(model.isActive())//
+				.level(model.getLevel())//
 				.build();//
 	}
 
