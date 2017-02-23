@@ -21,6 +21,14 @@
 		$("#questionContextSortBy").val(field);
 		$("#questionContextForm").submit();
 	}
+	function usePageSize(size) {
+		$("#questionContextPageSize").val(size);
+		$("#questionContextForm").submit();
+	}
+	function usePageNumber(number){
+		$("#questionContextPageNumber").val(number);
+		$("#questionContextForm").submit();
+	}
 </script>
 </head>
 <body>
@@ -31,16 +39,17 @@
 			<div class="panel-heading" style="font-weight: bold;">Witaj: ${user.name}</div>
 			<div class="panel-body">
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#home">Mój profil</a></li>
-					<li><a data-toggle="tab" href="#tests">Moje Testy</a></li>
-					<li><a data-toggle="tab" href="#questions">Moje Pytania</a></li>
+					<li <c:if test="${activeTab=='profile'}"> class="active" </c:if>><a data-toggle="tab" href="#home">Mój profil</a></li>
+					<li <c:if test="${activeTab=='tests'}"> class="active" </c:if>><a data-toggle="tab" href="#tests">Moje Testy</a></li>
+					<li <c:if test="${activeTab=='questions'}"> class="active" </c:if>><a data-toggle="tab" href="#questions">Moje
+							Pytania</a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="home" class="tab-pane fade in active">
+					<div id="home" class="tab-pane fade<c:if test="${activeTab=='profile'}"> in active</c:if>">
 						<h3>Moj profil</h3>
 						<p>....</p>
 					</div>
-					<div id="tests" class="tab-pane fade">
+					<div id="tests" class="tab-pane fade<c:if test="${activeTab=='tests'}"> in active</c:if>">
 						<h3>Moje Testy</h3>
 						<table class="table table-striped">
 							<thead>
@@ -95,22 +104,41 @@
 							</tbody>
 						</table>
 					</div>
-					<div id="questions" class="tab-pane fade">
+					<div id="questions" class="tab-pane fade<c:if test="${activeTab=='questions'}"> in active</c:if>">
 						<h3>Moje Pytania</h3>
 						<table class="table table-striped">
 							<thead>
 								<tr>
 									<th class="col-sm-6" onmouseover="setCursor(this, 'pointer')" onmouseout="setCursor(this, 'default')"
-										onclick="orderBy('text')">Treść</th>
+										onclick="orderBy('text')">Treść <span class="glyphicon glyphicon-chevron-up" style="padding-left: 90%;"></span></th>
 									<th class="col-sm-1" onmouseover="setCursor(this, 'pointer')" onmouseout="setCursor(this, 'default')"
-										onclick="orderBy('category')">Kategoria</th>
-						 			<th class="col-sm-2" onmouseover="setCursor(this, 'pointer')" onmouseout="setCursor(this, 'default')"
+										onclick="orderBy('area.name')">Kategoria</th>
+									<th class="col-sm-2" onmouseover="setCursor(this, 'pointer')" onmouseout="setCursor(this, 'default')"
 										onclick="orderBy('level')">Poziom trudności</th>
 									<th class="col-sm-1" onmouseover="setCursor(this, 'pointer')" onmouseout="setCursor(this, 'default')"
 										onclick="orderBy('active')">Akceptacja</th>
 									<th class="col-sm-2">Akcje</th>
 								</tr>
 							</thead>
+							<tfoot>
+								<tr>
+									<td colspan="4" align="center">
+										<ul class="pagination pagination-sm">
+											<c:forEach begin="1" end="${quesionContext.totalPages}" varStatus="status">
+												<li <c:if test="${quesionContext.pageNumber == status.index-1}">class="active"</c:if>><a href="#" onclick="usePageNumber(${status.index-1})">${status.index}</a></li>
+											</c:forEach>
+										</ul>
+									</td>
+									<td colspan="1" align="right">Pokaż w tabeli:<select class="form-control"
+										style="width: 75px;" id="pageSizeQuestionsPick" onchange="usePageSize(this.value)">
+											<option <c:if test="${quesionContext.pageSize == 1}">selected="selected"</c:if>>1</option>
+											<option <c:if test="${quesionContext.pageSize == 5}">selected="selected"</c:if>>5</option>
+											<option <c:if test="${quesionContext.pageSize == 10}">selected="selected"</c:if>>10</option>
+											<option <c:if test="${quesionContext.pageSize == 20}">selected="selected"</c:if>>20</option>
+									</select>
+									</td>
+								</tr>
+							</tfoot>
 							<tbody>
 								<c:forEach var="q" items="${quesionContext.result}">
 									<tr>
@@ -130,11 +158,12 @@
 							</tbody>
 						</table>
 						<form action="/java-quiz-academy/user/me" id="questionContextForm">
-							<input type="hidden" id="questionContextSortBy" name="sortBy" value ="${quesionContext.sortBy}"/>
-							<input type="hidden" id="questionContextLastSortBy" name="lastSortBy" value ="${quesionContext.lastSortBy}"/>
-							<input type="hidden" id="questionContextPageSize" name="pageSize" value ="${quesionContext.pageSize}"/>
-							<input type="hidden" id="questionContextPageNumber" name="pageNumber" value ="${quesionContext.pageNumber}"/>
-							<input type="hidden" id="questionContextSortDirection" name="sortDirection" value ="${quesionContext.sortDirection}"/>
+							<input type="hidden" id="questionContextSortBy" name="sortBy" value="${quesionContext.sortBy}" /> <input type="hidden"
+								id="questionContextLastSortBy" name="lastSortBy" value="${quesionContext.lastSortBy}" /> <input type="hidden"
+								id="questionContextPageSize" name="pageSize" value="${quesionContext.pageSize}" /> <input type="hidden"
+								id="questionContextPageNumber" name="pageNumber" value="${quesionContext.pageNumber}" /> <input type="hidden"
+								id="questionContextSortDirection" name="sortDirection" value="${quesionContext.sortDirection}" /> <input type="hidden"
+								name="activeTab" value="questions" />
 						</form>
 						<form action="/java-quiz-academy/question/newQuestion">
 							<button type="submit" class="btn btn-default btn-xs">Nowe Pytanie</button>

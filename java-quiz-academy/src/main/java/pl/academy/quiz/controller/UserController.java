@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import pl.academy.quiz.command.GetUserQuestionsCommand;
 import pl.academy.quiz.command.RegisterUserCommand;
@@ -57,11 +58,13 @@ public class UserController {
 
 	@RequestMapping(value = "/me", method = RequestMethod.GET)
 	@Secured("ROLE_USER")
-	public String myProfileView(@ModelAttribute GetUserQuestionsCommand getUserQuestionCommand, ModelMap model,
+	public String myProfileView(@ModelAttribute GetUserQuestionsCommand getUserQuestionCommand,
+			@RequestParam(value = "activeTab", defaultValue = "profile") String activeTab, ModelMap model,
 			@AuthenticationPrincipal QuizUser user) {
 		getUserQuestionCommand.setUser(user);
 		model.addAttribute("results", resultConverter.convert(userService.getMyTestResults()));
 		model.addAttribute("quesionContext", questionConverter.convert(questionService.getUserQuesions(getUserQuestionCommand)));
+		model.addAttribute("activeTab", activeTab);
 		return "myProfile";
 	}
 

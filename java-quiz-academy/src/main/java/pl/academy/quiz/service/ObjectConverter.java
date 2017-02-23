@@ -23,9 +23,11 @@ public interface ObjectConverter<OBJFROM, OBJTO> {
 
 		return (PageDTO<OBJTO>) PageDTO.builder()//
 				.pageNumber(page.getNumber())//
-				.pageSize(page.getNumberOfElements())//
+				.pageSize(page.getSize())//
 				.sortDirection(page.getSort().iterator().next().getDirection().name())
 				.sortBy(page.getSort().iterator().next().getProperty())//
+				.totalPages(page.getTotalPages())//
+				.totalElements(page.getTotalElements())//
 				.result((List<Object>) convert(content))//
 				.build();//
 	}

@@ -17,5 +17,8 @@ public class PageDTO<OBJ> {
 	private String sortDirection;
 	private int pageSize;
 	private int pageNumber;
+	private long totalElements;
+	private int totalPages;
+	
 	private List<OBJ> result;
 }

@@ -24,7 +24,7 @@
 		</c:otherwise>
 	</c:choose>
 	<c:if test="${loggedIn}">
-		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/user/me'">Mój profil</button>
+		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/user/me?activeTab=profile'">Mój profil</button>
 	</c:if>
 	<c:if test="${isAdmin}">
 		<button type="button" class="btn btn-default" onclick="document.location.href='/java-quiz-academy/admin/'">Panel Administracyjny</button>
